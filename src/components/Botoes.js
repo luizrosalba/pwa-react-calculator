@@ -7,17 +7,17 @@ function Botoes(props) {
     <section>
         <div className="grid grid-columns-1"  >
             <div className="item">
-            <button className="botao-vermelho" onClick={props.onClick}>
+            <button id="clear" className="botao-vermelho" onClick={props.onClick}>
                 AC
             </button>
             </div>
             <div className="item">
-                <button className="botao-operacoes" onClick={props.onClick}>
+                <button id="divide" className="botao-operacoes" onClick={props.onClick}>
                     /
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-operacoes" onClick={props.onClick}>
+                <button id="multiply" className="botao-operacoes" onClick={props.onClick}>
                     x
                 </button>    
             </div>
@@ -25,76 +25,76 @@ function Botoes(props) {
     
         <div className="grid grid-columns-2">
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="seven" className="botao-numeros" onClick={props.onClick}>
                     7
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="eigth" className="botao-numeros" onClick={props.onClick}>
                     8
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="nine" className="botao-numeros" onClick={props.onClick}>
                     9
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-operacoes" onClick={props.onClick}>
+                <button id="add" className="botao-operacoes" onClick={props.onClick}>
                     +
                 </button>    
             </div>
         </div>
         <div className="grid grid-columns-2">
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="four" className="botao-numeros" onClick={props.onClick}>
                     4
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="five" className="botao-numeros" onClick={props.onClick}>
                     5
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="six" className="botao-numeros" onClick={props.onClick}>
                     6
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-operacoes" onClick={props.onClick}>
+                <button id="subtract" className="botao-operacoes" onClick={props.onClick}>
                     -
                 </button>    
             </div>
         </div>
         <div className="grid grid-columns-2">
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="one" className="botao-numeros" onClick={props.onClick}>
                     1
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="two" className="botao-numeros" onClick={props.onClick}>
                     2
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="three" className="botao-numeros" onClick={props.onClick}>
                     3
                 </button>    
             </div>
-            <div className="item-equal botao-equal" onClick={props.onClick}>
-                <button className="botao-equal">
+            <div  className="item-equal botao-equal" onClick={props.onClick}>
+                <button id="equals" className="botao-equal">
                     =
                 </button>    
             </div>
             <div className="item-0">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="zero" className="botao-numeros" onClick={props.onClick}>
                     0
                 </button>    
             </div>
             <div className="item">
-                <button className="botao-numeros" onClick={props.onClick}>
+                <button id="decimal" className="botao-numeros" onClick={props.onClick}>
                     .
                 </button>    
             </div>

@@ -6,12 +6,105 @@ import Botoes from './components/Botoes'
 
 
 function App() {
-  const [entrada, setValue] = useState(0);
+  const [entrada, setEntrada] = useState(0);
+  const [previous, setPrevious] = useState(0);
+  const [operation, setOperation] = useState(null);
+  
+  
+  const equals = () => {
+    if (operation==="+")
+      setEntrada(parseFloat(previous) + parseFloat(entrada))
+    if (operation==="-")
+      setEntrada(parseFloat(previous) - parseFloat(entrada))
+    if (operation==="x")
+      setEntrada(parseFloat(previous) * parseFloat(entrada))
+    if (operation==="/")
+      setEntrada(parseFloat(previous) / parseFloat(entrada))
+    console.log(entrada, " " , previous, " " , operation)
+  }
+
+  const minusCase = () => {
+    if (entrada===0)
+    {
+      setEntrada("-");
+    }
+    else 
+    {
+      setPrevious(entrada);
+      setEntrada(0);
+      setOperation("-");
+    }
+  }
+
+
 
   const handleEntrada = (event) => {
 
     const newEntrada = event.target.innerText;
-    setValue(newEntrada);
+    switch (newEntrada) {
+      case "1":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break   
+      case "2":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break
+      case "3":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break
+      case "4":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break    
+      case "5":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break    
+      case "6":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break    
+      case "7":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break  
+      case "8":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break  
+      case "9":
+        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
+        break  
+      case "0":
+        setEntrada(entrada===0?entrada:entrada+newEntrada);
+        break      
+      case "AC":
+        setEntrada(0);
+        break;
+      case ".":
+        setEntrada(entrada.toString().includes(".")?entrada:entrada+newEntrada);
+        break;
+      case "+":
+        setPrevious(entrada);
+        setEntrada(0);
+        setOperation("+");
+        break;
+      case "-":
+        minusCase();
+        break;
+      case "/":
+        setPrevious(entrada);
+        setEntrada(0);
+        setOperation("/");
+        break;
+      case "x":
+        setPrevious(entrada);
+        setEntrada(0);
+        setOperation("x");
+        break;
+      case "=":
+          equals();
+        break;
+      default:
+        break;
+    }
+    
+    
+
 
   }
 
@@ -26,7 +119,8 @@ function App() {
           <div className="wrap">
             <div>
               <input 
-                handleAddValue={handleEntrada} 
+                readOnly
+                id="display"        
                 value={entrada}
                 className="entrada" 
               />
