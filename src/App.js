@@ -2,6 +2,10 @@ import './App.css';
 
 import Botoes from './components/Botoes'
 
+function onClick (event){
+  console.log(event.target.innerText)
+}
+
 function App() {
   return (
 
@@ -16,6 +20,7 @@ function App() {
               <input className="entrada" />
             </div>
             <Botoes 
+              onClick= {onClick}
             />
           </div>
         </div>
