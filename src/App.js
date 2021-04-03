@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+
+import Botoes from './components/Botoes'
 
 function App() {
   return (
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <h1> Projeto Calculadora </h1> 
       </header>
+      <section>
+        <div className="container">
+          <div className="wrap">
+            <div>
+              <input className="entrada" />
+            </div>
+            <Botoes 
+            />
+          </div>
+        </div>
+        
+      </section>
     </div>
   );
 }
 
 export default App;
+
