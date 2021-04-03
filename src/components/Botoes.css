@@ -1,0 +1,42 @@
+/* Grid */
+.grid {
+	display: grid;
+    border: black 1px solid;
+    grid-gap: 2px;
+}
+.grid-columns-1 {
+	grid-template-columns: 2fr 1fr 1fr ;
+}
+.grid-columns-2 {
+	grid-template-columns: 1fr 1fr 1fr 1fr ;
+}
+.item-0 {
+    grid-column: 1 / span 2;
+}
+.item-equal {
+    grid-column: 4 ;
+    grid-row: 1 / span 2;
+}
+.botao-vermelho{
+    background-color: red;
+    border: none;
+    width: 100%;
+  }
+  
+  .botao-operacoes{
+    background-color: gray;
+    border: none;
+    width: 100%;
+  }
+
+  .botao-equal{
+    background-color: blueviolet;
+    border: none;
+    width: 100%;
+  }
+  
+  .botao-numeros{
+    background-color: black;
+    color: white;
+    width: 100%;
+  }
