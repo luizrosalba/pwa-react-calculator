@@ -20,7 +20,7 @@ function App() {
       setEntrada(parseFloat(previous) * parseFloat(entrada))
     if (operation==="/")
       setEntrada(parseFloat(previous) / parseFloat(entrada))
-    console.log(entrada, " " , previous, " " , operation)
+    console.log(previous+ " " + operation+ " " +entrada)
   }
 
   const minusCase = () => {
@@ -74,27 +74,28 @@ function App() {
         break      
       case "AC":
         setEntrada(0);
+        setOperation("");
         break;
       case ".":
         setEntrada(entrada.toString().includes(".")?entrada:entrada+newEntrada);
         break;
-      case "+":
-        setPrevious(entrada);
-        setEntrada(0);
-        setOperation("+");
+      case "+":       
+          setPrevious(entrada);
+          setEntrada(0);
+          setOperation("+")
         break;
       case "-":
         minusCase();
         break;
       case "/":
-        setPrevious(entrada);
-        setEntrada(0);
-        setOperation("/");
+          setPrevious(entrada);
+          setEntrada(0);
+          setOperation("/")
         break;
       case "x":
-        setPrevious(entrada);
-        setEntrada(0);
-        setOperation("x");
+          setPrevious(entrada);
+          setEntrada(0);
+          setOperation("x")
         break;
       case "=":
           equals();

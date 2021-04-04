@@ -30,7 +30,7 @@ function Botoes(props) {
                 </button>    
             </div>
             <div className="item">
-                <button id="eigth" className="botao-numeros" onClick={props.onClick}>
+                <button id="eight" className="botao-numeros" onClick={props.onClick}>
                     8
                 </button>    
             </div>
