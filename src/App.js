@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './App.css';
 
@@ -6,96 +6,138 @@ import Botoes from './components/Botoes'
 
 
 function App() {
-  const [entrada, setEntrada] = useState(0);
-  const [previous, setPrevious] = useState(0);
-  const [operation, setOperation] = useState(null);
-  
-  
-  const equals = () => {
+  const [display, setDisplay] = useState(0);
+  const [memory, setMemory] = useState(0);
+  const [operation, setOperation] = useState("");
+  const [expression, setExpression] = useState(""); 
+  const [answer, setAnswer] = useState(0); 
+
+  const evaluateExpression = () =>{
     if (operation==="+")
-      setEntrada(parseFloat(previous) + parseFloat(entrada))
+    {
+      setDisplay(parseFloat(memory) + parseFloat(display))
+      setMemory(parseFloat(memory) + parseFloat(display))
+    }
     if (operation==="-")
-      setEntrada(parseFloat(previous) - parseFloat(entrada))
+    {
+      setDisplay(parseFloat(memory) - parseFloat(display))
+      setMemory(parseFloat(memory) - parseFloat(display))
+    }
     if (operation==="x")
-      setEntrada(parseFloat(previous) * parseFloat(entrada))
-    if (operation==="/")
-      setEntrada(parseFloat(previous) / parseFloat(entrada))
-    console.log(previous+ " " + operation+ " " +entrada)
-  }
-
-  const minusCase = () => {
-    if (entrada===0)
     {
-      setEntrada("-");
+      setDisplay(parseFloat(memory) * parseFloat(display))
+      setMemory(parseFloat(memory) * parseFloat(display))
     }
-    else 
-    {
-      setPrevious(entrada);
-      setEntrada(0);
-      setOperation("-");
+    if (operation==="/"){
+      setDisplay(parseFloat(memory) / parseFloat(display))
+      setMemory(parseFloat(memory) / parseFloat(display))
     }
   }
 
+  const equals = () =>{
+    setExpression(memory+operation+display);
+    evaluateExpression();
+    ///set memory com o valor do resultado
+  }
 
+  function filterOperation (operator) {
+
+    if(display===0) {
+      if (memory===0)
+      {
+        if (operator==="-"||operator==="+") setDisplay(operator); ///caso display 0 coloque o símbolo
+        else {
+          setOperation(operator);
+        }
+      }else
+      {
+        if (operator==="-") setDisplay(operator); ///caso display 0 coloque o símbolo
+        else {
+          setOperation(operator);
+        }
+      }
+    }
+
+    if( (display==="-" || display==="+") && ((operator==="+") || (operator==="-"))) {
+      setDisplay(operator); ///caso display - troque o símbolo
+    }
+    if( (display==="-" || display==="+") && ((operator!=="-") )) {
+      setOperation(operator); ///caso display - troque o símbolo
+    }
+
+    if (display!==0 && display!=="+" && display!=="-"){ 
+       
+      if (operation==="")
+      {
+        setMemory(display); /// coloca o display na memoria 
+        setDisplay(0);  /// zera o display 
+        setOperation(operator);
+      }else{
+        setOperation(operator);
+      }
+
+
+    }
+    
+    // if( (display===0 || display==="-" || display==="+")  && (operator==="-" || operator==="+")){
+    //   setDisplay(operator);  /// zera o display  
+    // }
+
+
+    // if(display!==0 && display!=="-" && display!=="+"){
+    //   if(memory===0 && operation!==""){
+    //     setMemory(display); /// coloca o display na memoria 
+    //     setDisplay(0);  /// zera o display 
+    //   }   
+    //   if(memory!==0 && operation!==""){
+    //     equals();
+    //   }
+
+
+    //   if (display!=="" && operation==="")
+    //   {
+    //     setMemory(display); /// coloca o display na memoria 
+    //     setDisplay(0);  /// zera o display 
+    //     setOperation(operator);
+    //   }
+    // }
+  }
 
   const handleEntrada = (event) => {
 
-    const newEntrada = event.target.innerText;
-    switch (newEntrada) {
-      case "1":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break   
-      case "2":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break
-      case "3":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break
-      case "4":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break    
-      case "5":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break    
-      case "6":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break    
-      case "7":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break  
-      case "8":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break  
-      case "9":
-        setEntrada(entrada===0?newEntrada:entrada+newEntrada);
-        break  
-      case "0":
-        setEntrada(entrada===0?entrada:entrada+newEntrada);
-        break      
+    const operadorOuNumero = event.target.innerText;
+    let numbersRegex = /[0-9]/
+    if (operadorOuNumero.match(numbersRegex))
+    {
+      let number = operadorOuNumero;
+      if (display===0)
+      {
+        setDisplay(number); /// se a entrada é zero começa um novo numero 
+      }
+      else
+      {
+        setDisplay(display+number); /// se a entrada não é zero mostre no display 
+      }
+    }
+
+    let testOperations = /[+\-\x/]/;
+    if (testOperations.test(operadorOuNumero)) 
+    {
+      let operador = operadorOuNumero;
+
+      filterOperation(operador) /// se for uma operacao faça filtragem
+    }
+
+    switch (operadorOuNumero) {
       case "AC":
-        setEntrada(0);
-        setOperation("");
+          setMemory(0);
+          setDisplay(0);
+          setOperation("");
+          setExpression("");
         break;
       case ".":
-        setEntrada(entrada.toString().includes(".")?entrada:entrada+newEntrada);
-        break;
-      case "+":       
-          setPrevious(entrada);
-          setEntrada(0);
-          setOperation("+")
-        break;
-      case "-":
-        minusCase();
-        break;
-      case "/":
-          setPrevious(entrada);
-          setEntrada(0);
-          setOperation("/")
-        break;
-      case "x":
-          setPrevious(entrada);
-          setEntrada(0);
-          setOperation("x")
+          console.log("ponto")
+          setDisplay(display.includes(".")?display:display+operadorOuNumero);
         break;
       case "=":
           equals();
@@ -103,10 +145,6 @@ function App() {
       default:
         break;
     }
-    
-    
-
-
   }
 
   return (
@@ -120,9 +158,31 @@ function App() {
           <div className="wrap">
             <div>
               <input 
+                style={{textAlign:"end"}}
                 readOnly
                 id="display"        
-                value={entrada}
+                value={display}
+                className="entrada" 
+              />
+              <input 
+                style={{textAlign:"end"}}
+                readOnly
+                id="operacao"        
+                value={operation}
+                className="entrada" 
+              />
+              <input 
+                style={{textAlign:"end"}}
+                readOnly
+                id="memoria"        
+                value={memory}
+                className="entrada" 
+              />
+              <input 
+                style={{textAlign:"end"}}
+                readOnly
+                id="expression"        
+                value={expression}
                 className="entrada" 
               />
             </div>
